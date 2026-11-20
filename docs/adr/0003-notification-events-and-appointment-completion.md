@@ -15,7 +15,7 @@ The system sends six kinds of notifications (`NotificationType` in OpenAPI v0.2.
 
 The things that cause a notification happen in different modules: M2 Booking Core changes reservation status, M3 Lab grants training and starts maintenance, M4 Office Hours cancels days and redirects appointments. Notifications are owned by M1 Identity. ADR-0001 does not allow modules to reference each other's internal projects. The C4 component diagram already shows "M2 → M1: status-change events", but the mechanism was not defined.
 
-A second, related gap is in the [UML state machine](../architecture/uml.md): `APPROVED → COMPLETED` is allowed, but for appointments (`OFFICE_HOUR`, `SUPPORT`, `TRAINING`) **no endpoint completes them**. Lab reservations are completed by `POST /reservations/{id}/return`, but appointments would stay `APPROVED` forever. This makes "my appointments" lists and usage reports wrong.
+A second, related gap is in the [UML state machine](../architecture/uml.md): `APPROVED → COMPLETED` is allowed, but for `OFFICE_HOUR` and `SUPPORT` appointments **no endpoint completes them**. Lab reservations are completed by `POST /reservations/{id}/return` and `TRAINING` appointments by `POST /training-authorizations` (SRS FR-M3-07), but the other appointments would stay `APPROVED` forever. This makes "my appointments" lists and usage reports wrong.
 
 ## Decision
 
@@ -43,7 +43,7 @@ Event types live in each module's **contracts** project, so a subscriber depends
 | `ReservationStatusChanged` | M2 Booking Core (every transition) | `Bookademic.Booking.Contracts` | `ReservationId`, `Kind`, `OwnerId`, `From`, `To`, `ChangedBy`, `Cause`, `Reason`, `OccurredAt` |
 | `OfficeHourDayCancelled` | M4 Office Hours (US-20) | `Bookademic.OfficeHours.Contracts` | `ScheduleId`, `HostId`, `Date`, `Reason`, affected `AppointmentIds` and `StudentIds` |
 | `AppointmentRedirected` | M4 Office Hours (US-21) | `Bookademic.OfficeHours.Contracts` | `OldAppointmentId`, `NewAppointmentId`, `StudentId`, `NewHostId` |
-| `TrainingGranted` | M3 Lab (US-14) | `Bookademic.Lab.Contracts` | `TrainingAuthorizationId`, `StudentId`, `DeviceCategory`, `GrantedBy` |
+| `TrainingGranted` | M3 Lab (US-14) | `Bookademic.Lab.Contracts` | `TrainingAuthorizationId`, `StudentId`, `DeviceCategory`, `GrantedBy`, `ApprovingInstructorIds` (M3 reads them from its own `lab_approvals`, so M1 does not query M3 tables) |
 
 `Cause` is an enum `USER`, `MAINTENANCE`, `DAY_CANCELLED`, `REDIRECTED`, `AUTO_COMPLETED`. M3 and M4 pass it to `IBookingEngine` when they cancel or complete a reservation, so M2 can publish it without knowing why the module made the change.
 
@@ -60,7 +60,7 @@ M1 has one handler per event. It writes a row to `identity.notifications` with t
 | `ReservationStatusChanged`, `To = CANCELLED`, `Cause = USER` or `MAINTENANCE` | `RESERVATION_CANCELLED` | The party who did not cancel: the owner if staff cancelled; the host if a student cancelled an appointment |
 | `OfficeHourDayCancelled` | `OFFICE_HOUR_CANCELLED` | Every affected student |
 | `AppointmentRedirected` | `APPOINTMENT_REDIRECTED` | Student |
-| `TrainingGranted` | `TRAINING_GRANTED` | Student |
+| `TrainingGranted` | `TRAINING_GRANTED` | The instructor(s) who granted the student an active lab approval for the same category (SRS FR-M3-08); nobody if there is none |
 | `ReservationStatusChanged` with `Cause = DAY_CANCELLED` or `REDIRECTED` | none (the specific event above covers it) | – |
 | Creation (`From = null`), `CHECKED_IN`, `COMPLETED` | none | – |
 
@@ -77,13 +77,15 @@ A new appointment is approved automatically, so there is no notification for it.
 
 M4 runs a `BackgroundService` called `AppointmentCompletionJob` every 5 minutes:
 
-1. It finds appointments whose reservation status is `APPROVED` and whose `endsAt` is in the past.
+1. It finds `OFFICE_HOUR` and `SUPPORT` appointments whose reservation status is `APPROVED` and whose `endsAt` is in the past.
 2. For each one it calls `IBookingEngine.CompleteAsync(id, changedBy: hostId, cause: AUTO_COMPLETED, reason: "Completed automatically after the end time")`.
 3. M2 writes the `status_changes` row and publishes `ReservationStatusChanged`, as for any other transition. No notification is sent.
 
 The `APPROVED → COMPLETED` transition is already allowed by the contract, so **no new endpoint and no contract change** are needed. `changedBy` is the host, because the appointment took place in the host's time. This keeps `changed_by` a real user id and avoids a special "system" user that is not a `Role`.
 
-Lab reservations are **not** completed automatically: they are completed at return (`POST /reservations/{id}/return`, US-15), because the device must physically come back. What happens to an `APPROVED` lab reservation that is never checked in (no-show) is decided in Sprint 3.
+`TRAINING` appointments are **not** completed by the job. The research assistant completes them with `POST /training-authorizations`, which sets the appointment to `COMPLETED` and creates the authorisation in one transaction (SRS FR-M3-07). If the job completed them first, that request would fail, and an appointment marked `COMPLETED` by time alone would look like a finished training even though no authorisation was given.
+
+Lab reservations are **not** completed automatically either: they are completed at return (`POST /reservations/{id}/return`, US-15), because the device must physically come back. What happens to an `APPROVED` lab reservation that is never checked in (no-show) is decided in Sprint 3.
 
 ### 5. Tests
 
@@ -94,7 +96,7 @@ Lab reservations are **not** completed automatically: they are completed at retu
 | A rolled-back transaction publishes no event | Integration |
 | SMTP down: the request still returns 200/201 and the notification row exists | Integration (Mailpit stopped) |
 | The e-mail arrives in Mailpit (Mailpit API `GET /api/v1/messages`) | Integration / E2E |
-| The job completes an `APPROVED` appointment after `endsAt`, leaves future ones and lab reservations unchanged | Unit (fake clock with `TimeProvider`) |
+| The job completes an `APPROVED` appointment after `endsAt`, leaves future ones, `TRAINING` appointments and lab reservations unchanged | Unit (fake clock with `TimeProvider`) |
 | M2 has no reference to M1, M3 or M4 internals | ArchUnitNET |
 
 ## Consequences
