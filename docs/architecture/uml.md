@@ -293,4 +293,4 @@ The six states are exactly the `ReservationStatus` enum. **Active** states are `
 
 Every transition writes a `StatusChange` row (who, when, from, to, reason) and publishes an event that M1 Identity turns into a notification where the use case table above lists one.
 
-**Appointment completion:** OpenAPI v0.2.2 has no endpoint to complete an appointment. [ADR-0003](../adr/0003-notification-events-and-appointment-completion.md) decides that a background job moves `APPROVED` appointments to `COMPLETED` automatically after `endsAt` (`changedBy` = host). No contract change is needed.
+**Appointment completion:** OpenAPI v0.2.2 has no endpoint to complete an appointment. [ADR-0003](../adr/0003-notification-events-and-appointment-completion.md) decides that a background job moves `APPROVED` `OFFICE_HOUR` and `SUPPORT` appointments to `COMPLETED` automatically after `endsAt` (`changedBy` = host). `TRAINING` appointments are completed only by `POST /training-authorizations`. No contract change is needed.
