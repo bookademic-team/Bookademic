@@ -92,7 +92,7 @@ The contract can also be viewed in [Swagger Editor](https://editor.swagger.io/) 
 | [System Vision & Boundary](docs/sprint1/vision.md) | Scope, context diagram, constraints, actors and use cases | Melih |
 | [Product Backlog](docs/sprint1/backlog.md) | Epics, user stories, acceptance criteria, estimates, owners | Melih |
 | [Student Survey](docs/sprint1/survey.md) | Primary-evidence survey and analysis plan | Melih |
-| [OpenAPI Contract](docs/api/openapi.yaml) | API-first contract (v0.2.2) | Mürsel |
+| [OpenAPI Contract](docs/api/openapi.yaml) | API-first contract (v0.2.3) | Mürsel |
 | [Story ↔ API Mapping](docs/api/story-mapping.md) | Traceability from backlog stories to API operations | Mürsel |
 | [ADR-0001 Tech Stack](docs/adr/0001-tech-stack.md) | Architecture and technology decisions | Mürsel |
 | [Test Plan](docs/test-plan.md) | Test strategy, levels, coverage goals, quality gates | Mirac |

@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Bookademic API
-  version: 0.2.2
+  version: 0.2.3
   summary: Shared booking core for office hours and laboratory resources.
   description: |
     API-first contract for Bookademic (SENG 321, Sprint 1).
@@ -378,7 +378,8 @@ paths:
       operationId: createReservation
       summary: Reserve a lab device or room for an interval
       description: |
-        Checks, in order: interval validity (400), resource exists (404),
+        Checks, in order: interval validity – endsAt after startsAt and startsAt not
+        in the past (400 INVALID_INTERVAL), resource exists (404),
         resource not in maintenance (409), eligibility policy of the resource type
         – active lab approval and training authorisation for the category (403),
         and interval conflict with PENDING, APPROVED or CHECKED_IN reservations (409).
@@ -690,7 +691,9 @@ paths:
       operationId: grantLabApproval
       summary: Grant lab access for a device category from an office-hour appointment (INSTRUCTOR)
       description: |
-        The appointment must be an OFFICE_HOUR appointment hosted by the caller.
+        The appointment must be an OFFICE_HOUR appointment hosted by the caller, in
+        status APPROVED or COMPLETED (appointments are completed automatically after
+        their end time, ADR-0003); otherwise 403 FORBIDDEN.
         The student is taken from the appointment. Expired approvals are not valid.
       x-story: [US-13]
       x-priority: must
@@ -932,6 +935,7 @@ paths:
       description: |
         Auto-approved when the slot is free; stored as an M2 reservation of kind APPOINTMENT.
         A student can hold one appointment per host per day.
+        A slot whose start time has already passed returns 400 INVALID_INTERVAL.
         `relatedReservationId` opens a help appointment from an own APPROVED or
         CHECKED_IN lab reservation (US-22); its details are attached automatically.
       x-story: [US-18, US-22]
