@@ -38,7 +38,7 @@ The MVP is the demo journey of the proposal: US-17 (define hours) → US-18 (app
 |---|---|---|
 | 1 | EN-04, US-01, US-02 | CI and authentication are needed by every other story |
 | 2 | US-04, US-11, US-17 | Notifications, catalogue and schedules are the base data of the journey |
-| 3 | US-06, US-07 | The M2 conflict engine and `IEligibilityPolicy`; everything else books through it |
+| 3 | US-06, US-07 | The M2 conflict engine and `IEligibilityPolicy`; everything else books through it. Until US-13/US-14 are done (step 5), the lab approval and training checks of US-06 are developed and tested with seeded `lab_approvals` and `training_authorizations` rows |
 | 4 | US-18, US-19, US-12, US-09 | Appointments and catalogue search on top of M2 |
 | 5 | US-08, US-13, US-14, US-20 | Approval, lab access and cancellation complete the demo journey |
 
@@ -54,7 +54,7 @@ The MVP is the demo journey of the proposal: US-17 (define hours) → US-18 (app
 | Emir | 12 | 8 | 20 |
 | **Total** | **63** | **24** | **87** |
 
-EN-01 … EN-03 (8 points) were completed in Sprint 1 and are not counted here, so the total is 87 of 95 points. Sıla's Sprint 3 load is lower because the Scrum Master also runs the stand-ups, contribution tracking and the release.
+EN-01 … EN-03 (8 points) were completed in Sprint 1 and are not counted here, so the total is 87 of 95 points. Sıla's Sprint 3 load is lower because the Scrum Master also runs the stand-ups and contribution tracking.
 
 ## Epics
 
