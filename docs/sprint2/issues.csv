@@ -174,7 +174,7 @@ US-14,"US-14: As a research assistant, I want to record a completed device train
 As a research assistant, I want to record a completed device training and authorize the student.
 
 **Acceptance criteria**
-Authorization is created only when an appointment of type TRAINING is completed, otherwise 400 `NOT_A_TRAINING_APPOINTMENT`; authorization is per category and valid until the end of the semester; a second authorization for the same category → 409 `TRAINING_ALREADY_GRANTED`; the instructor who granted the approval receives an in-app notification (US-04).
+Authorization is created only when an appointment of type TRAINING is completed, otherwise 400 `NOT_A_TRAINING_APPOINTMENT`; authorization is per category and valid until the end of the semester (configured semester end date); a second authorization for the same category → 409 `TRAINING_ALREADY_GRANTED`; the instructor who granted the approval receives an in-app notification (US-04).
 
 **Requirements (SRS):** FR-M3-07, FR-M3-08 – see `docs/sprint2/srs.md`
 
@@ -187,7 +187,7 @@ US-15,"US-15: As a research assistant, I want to hand over a device with a check
 As a research assistant, I want to hand over a device with a check-out code and receive its return.
 
 **Acceptance criteria**
-A 6-digit single-use code with an expiry is generated only for an approved reservation, otherwise 409; when verified → CHECKED_IN; a wrong, expired or reused code → 400 `INVALID_HANDOVER_CODE`; on return → COMPLETED.
+A 6-digit single-use code is generated only for an approved reservation, otherwise 409; it expires after a configurable time (default 15 minutes); when verified → CHECKED_IN; a wrong, expired or reused code → 400 `INVALID_HANDOVER_CODE`; on return → COMPLETED.
 
 **Requirements (SRS):** FR-M3-09, FR-M3-10 – see `docs/sprint2/srs.md`
 
@@ -226,7 +226,7 @@ US-18,"US-18: As a student, I want to book an appointment by writing my topic.",
 As a student, I want to book an appointment by writing my topic.
 
 **Acceptance criteria**
-Topic note required (10–500 characters), otherwise 400; full slot → 409 `SLOT_UNAVAILABLE`; at most one appointment per day with the same staff member (instructor or research assistant), otherwise 409 `DAILY_APPOINTMENT_LIMIT`; **slot already started → 400 `INVALID_INTERVAL`**; the appointment is stored as a reservation in M2 and is APPROVED immediately.
+Topic note required (10–500 characters), otherwise 400; full slot → 409 `SLOT_UNAVAILABLE`; at most one APPROVED appointment per day (Europe/Istanbul date) with the same staff member (instructor or research assistant), otherwise 409 `DAILY_APPOINTMENT_LIMIT` (a cancelled appointment does not count); **slot already started → 400 `INVALID_INTERVAL`**; the appointment is stored as a reservation in M2 and is APPROVED immediately.
 
 **Requirements (SRS):** FR-M4-03, FR-M4-04, FR-M4-05 – see `docs/sprint2/srs.md`
 
@@ -252,7 +252,7 @@ US-20,"US-20: As a department secretary, I want to cancel an office hour for a s
 As a department secretary, I want to cancel an office hour for a specific day.
 
 **Acceptance criteria**
-SECRETARY/ADMIN or the owner of the hours only, otherwise 403; reason required (5–500 characters); all appointments of that day become CANCELLED; affected students receive an in-app notification (US-04); the numbers of cancelled appointments and notified students are returned.
+SECRETARY/ADMIN or the owner of the hours only, otherwise 403; reason required (5–500 characters); a date before today → 400; all APPROVED appointments of that day that have not started yet become CANCELLED; affected students receive an in-app notification (US-04); the numbers of cancelled appointments and notified students are returned.
 
 **Requirements (SRS):** FR-M4-07 – see `docs/sprint2/srs.md`
 
