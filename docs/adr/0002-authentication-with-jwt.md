@@ -119,7 +119,7 @@ The API starts only if the signing key exists and is at least 32 bytes long. Wit
 **Follow-ups**
 
 - `Jwt__SigningKey` is not yet in the repository. It is added as a placeholder to `.env.example` and passed to the `api` service in `docker-compose.yml`, and listed in the environment-variable table of the deployment document (#71). Owner: Mehmet. Until then the API refuses to start without the key (section 5), which is intended.
-- Rate limiting on `POST /auth/login` (built-in ASP.NET Core rate limiter, e.g. 5 attempts per minute per IP) needs a `429` response in the contract. This is planned for OpenAPI v0.2.3 (owner Mürsel).
+- Rate limiting on `POST /auth/login` (built-in ASP.NET Core rate limiter, e.g. 5 attempts per minute per IP) needs a `429` response in the contract. It is planned for a later contract version (owner Mürsel); v0.2.3 changes descriptions only.
 - In production the API runs behind TLS (HTTPS). In local docker compose, plain HTTP on `localhost` is used.
 
 ## Alternatives considered
