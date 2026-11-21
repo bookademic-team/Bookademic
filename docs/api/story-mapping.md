@@ -2,7 +2,7 @@
 
 This table is generated from the `x-story` fields in `docs/api/openapi.yaml`. When the contract changes, the table is regenerated; it is not edited by hand.
 
-Contract version: 0.2.2 · 35 operations · 21 stories mapped to endpoints.
+Contract version: 0.2.3 · 35 operations · 21 stories mapped to endpoints.
 
 | Story | Title | Priority | Owner | Operations (response codes) |
 |---|---|---|---|---|
