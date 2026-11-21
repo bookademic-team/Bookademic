@@ -905,7 +905,10 @@ paths:
       tags: [M4 Office Hours]
       operationId: cancelOfficeHourDay
       summary: Cancel a schedule for one day (SECRETARY, ADMIN or the host)
-      description: All appointments of that day become CANCELLED and affected students are notified.
+      description: |
+        All APPROVED appointments of that schedule on that date (Europe/Istanbul) that
+        have not started yet become CANCELLED, and affected students are notified.
+        A date before today returns 400 VALIDATION_ERROR; today is allowed.
       x-story: [US-20]
       x-priority: must
       requestBody:
