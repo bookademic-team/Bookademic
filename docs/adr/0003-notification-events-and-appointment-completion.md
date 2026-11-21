@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | Proposed (to be accepted in the pull-request review) |
+| Status | Accepted (21 Nov 2026, approved in the pull-request review) |
 | Date | 2026-11-20 |
 | Decision owner (A) | Mürsel – Lead Software Architect |
 | Consulted (C) | Mehmet (M1 Identity owner), Sıla (US-23 owner), Emir (M4 Office Hours) |

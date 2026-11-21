@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | Proposed (to be accepted in the pull-request review) |
+| Status | Accepted (21 Nov 2026, approved in the pull-request review) |
 | Date | 2026-11-20 |
 | Decision owner (A) | Mürsel – Lead Software Architect |
 | Consulted (C) | Mehmet (M1 Identity owner, DevOps), Mirac (QA) |
@@ -26,7 +26,7 @@ ADR-0001 chose "ASP.NET Core JWT Bearer + role-based policies" but did not fix t
 | Aspect | Decision |
 |---|---|
 | Type | Stateless JWT **access token**, sent as `Authorization: Bearer <token>` |
-| Signing | HS256 with a symmetric key of at least 32 bytes. The key comes from the environment variable `Jwt__SigningKey` (in `.env` for docker compose, never committed; `.env.example` contains a placeholder) |
+| Signing | HS256 with a symmetric key of at least 32 bytes. The key comes from the environment variable `Jwt__SigningKey` (in `.env` for docker compose, never committed). Adding it to `.env.example` and `docker-compose.yml` is a follow-up (see below) |
 | Issuer / audience | `iss = bookademic-api`, `aud = bookademic-web`, both validated |
 | Lifetime | 60 minutes (`expiresIn: 3600`). Clock skew is 1 minute instead of the default 5 |
 | Claims | `sub` (user id), `email`, `name`, `role`, `jti`, `iat`, `exp` |
@@ -118,6 +118,7 @@ The API starts only if the signing key exists and is at least 32 bytes long. Wit
 
 **Follow-ups**
 
+- `Jwt__SigningKey` is not yet in the repository. It is added as a placeholder to `.env.example` and passed to the `api` service in `docker-compose.yml`, and listed in the environment-variable table of the deployment document (#71). Owner: Mehmet. Until then the API refuses to start without the key (section 5), which is intended.
 - Rate limiting on `POST /auth/login` (built-in ASP.NET Core rate limiter, e.g. 5 attempts per minute per IP) needs a `429` response in the contract. This is planned for OpenAPI v0.2.3 (owner Mürsel).
 - In production the API runs behind TLS (HTTPS). In local docker compose, plain HTTP on `localhost` is used.
 
