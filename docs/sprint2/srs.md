@@ -7,7 +7,7 @@
 | Owner | Melih (Product Owner & Requirements Engineer) |
 | Reviewer | Mirac (QA): testability of every requirement |
 | Issue | [#60](https://github.com/bookademic-team/Bookademic/issues/60) |
-| Baseline | OpenAPI contract v0.2.2 (v0.2.3 in PR #78), [`vision.md`](../sprint1/vision.md), [Sprint 2 backlog](backlog.md), [ADR-0001](../adr/0001-tech-stack.md) |
+| Baseline | OpenAPI contract v0.2.3, [`vision.md`](../sprint1/vision.md), [Sprint 2 backlog](backlog.md), [ADR-0001](../adr/0001-tech-stack.md) |
 
 ---
 
@@ -40,7 +40,7 @@ Out of scope for this release (from [`vision.md` §3.2](../sprint1/vision.md)): 
 
 ### 1.3 Definitions, acronyms and abbreviations
 
-Names below follow the shared glossary of the Sprint 2 plan, taken from OpenAPI v0.2.2 and ADR-0001. All documents use them unchanged.
+Names below follow the shared glossary of the Sprint 2 plan, taken from OpenAPI v0.2.3 and ADR-0001. All documents use them unchanged.
 
 | Term | Meaning |
 |---|---|
@@ -74,7 +74,7 @@ Names below follow the shared glossary of the Sprint 2 plan, taken from OpenAPI 
 | R1 | [Project proposal](../sprint1/proposal.md) |
 | R2 | [System vision and boundaries](../sprint1/vision.md) |
 | R3 | [Product backlog – Sprint 2](backlog.md) (Sprint 1 version: [`sprint1/backlog.md`](../sprint1/backlog.md)) |
-| R4 | [OpenAPI contract v0.2.2](../api/openapi.yaml) and [story mapping](../api/story-mapping.md) |
+| R4 | [OpenAPI contract v0.2.3](../api/openapi.yaml) and [story mapping](../api/story-mapping.md) |
 | R5 | [ADR-0001 Technology stack](../adr/0001-tech-stack.md), [ADR-0002 JWT authentication](../adr/0002-authentication-with-jwt.md), [ADR-0003 Notification events and appointment completion](../adr/0003-notification-events-and-appointment-completion.md) |
 | R6 | [Screen list and flow](../ui-screens.md); [Figma prototypes](ui-prototypes.md) |
 | R7 | [Non-functional requirements](nfr.md) |
@@ -100,7 +100,7 @@ Names below follow the shared glossary of the Sprint 2 plan, taken from OpenAPI 
 | C2 | **Audit log for role changes** (US-03) had no entity in OpenAPI v0.2.2 or in the glossary. | FR-M1-06 | **Resolved** (Mürsel, 20 Nov): entity `AuditLog`, table `identity.audit_log` ([`database.md`](../architecture/database.md)); added to the glossary (§1.3) and §5. |
 | C3 | **Lab approval end date.** `expiresOn` earlier than today is rejected with `400 VALIDATION_ERROR` (an approval that is already expired has no use). | FR-M3-05; US-13 | Added to the backlog; covered by the generic `400` of `grantLabApproval`, no contract change. |
 | C4 | **US-04 notification for maintenance.** The `Notification.type` enum has no maintenance-specific value; FR-M3-11 uses `RESERVATION_CANCELLED`. | FR-M3-11 | Confirmed as sufficient; no contract change. |
-| C5 | **Testability clarifications** from the QA review of #82: dates in Europe/Istanbul (FR-M3-05, FR-M4-04, FR-M4-07); handover code lifetime `Handover__CodeLifetimeMinutes`, default 15 min (FR-M3-09); `validUntil` from `Semester__EndDate` (FR-M3-07); only `APPROVED` appointments count for the daily limit and for day cancellation; day cancellation for a past date → `400 VALIDATION_ERROR`. | FR-M3-05, FR-M3-07, FR-M3-09, FR-M4-04, FR-M4-07; US-13, US-14, US-15, US-18, US-20 | Added (follow-up to #82). The past-date rule for `cancelOfficeHourDay` uses the existing generic `400`; description to be added in the next OpenAPI version (Mürsel). |
+| C5 | **Testability clarifications** from the QA review of #82: dates in Europe/Istanbul (FR-M3-05, FR-M4-04, FR-M4-07); handover code lifetime `Handover__CodeLifetimeMinutes`, default 15 min (FR-M3-09); `validUntil` from `Semester__EndDate` (FR-M3-07); only `APPROVED` appointments count for the daily limit and for day cancellation; day cancellation for a past date → `400 VALIDATION_ERROR`. | FR-M3-05, FR-M3-07, FR-M3-09, FR-M4-04, FR-M4-07; US-13, US-14, US-15, US-18, US-20 | Added (follow-up to #82). The past-date rule for `cancelOfficeHourDay` uses the existing generic `400` and is described in OpenAPI v0.2.3 (#78). |
 
 ---
 
@@ -428,7 +428,7 @@ Additional data rules:
 
 ### 6.2 Software interfaces (REST API)
 
-- The REST API is specified in [`openapi.yaml`](../api/openapi.yaml) (OpenAPI 3.1, v0.2.2; v0.2.3 pending for C1): 35 operations, every one linked to a story by `x-story` ([story mapping](../api/story-mapping.md)).
+- The REST API is specified in [`openapi.yaml`](../api/openapi.yaml) (OpenAPI 3.1, v0.2.3, which includes the C1 and C5 rules): 35 operations, every one linked to a story by `x-story` ([story mapping](../api/story-mapping.md)).
 - JSON over HTTP, base path `/api/v1`, JWT Bearer authentication.
 - Errors: `application/problem+json` (RFC 9457) with `title`, `status`, `code`, `detail` and optional field `errors`.
 - During frontend development the contract is served by the Prism mock server.
@@ -535,7 +535,7 @@ Endpoints are written as in the contract; screens as in [`ui-screens.md`](../ui-
 
 ### 8.3 Endpoint coverage
 
-All 35 operations of OpenAPI v0.2.2 appear in Section 8.1:
+All 35 operations of OpenAPI v0.2.3 appear in Section 8.1:
 
 | Module | Operations |
 |---|---|
