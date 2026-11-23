@@ -37,6 +37,7 @@ services:
       ConnectionStrings__Default: Host=db;Port=5432;Database=${POSTGRES_DB:-bookademic};Username=${POSTGRES_USER:-bookademic};Password=${POSTGRES_PASSWORD:-bookademic}
       Smtp__Host: mailpit
       Smtp__Port: "1025"
+      Jwt__SigningKey: ${JWT_SIGNING_KEY:-dev-only-signing-key-change-me-0123456789abcd}
     ports:
       - "8080:8080"
     depends_on:
