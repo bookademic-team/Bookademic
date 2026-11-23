@@ -44,7 +44,7 @@ Names below follow the shared glossary of the Sprint 2 plan, taken from OpenAPI 
 
 | Term | Meaning |
 |---|---|
-| Resource | A bookable device or room (`Resource`, `ResourceType`: `DEVICE`, `ROOM`). An instructor's or research assistant's time is also treated as a resource by M2. |
+| Resource | A bookable device or room (`Resource`, `ResourceType`: `DEVICE`, `ROOM`). For appointments, M2 uses the Slot id as the bookable key (resourceId). |
 | Device category | Free-text category of a device (e.g. *Oscilloscope*). Lab approvals and training authorisations are per category. |
 | Reservation | An M2 booking of a resource for a half-open interval `[startsAt, endsAt)` (`Reservation`). `ReservationKind`: `LAB`, `APPOINTMENT`. |
 | Appointment | A student's booking of an office, support or training slot (`Appointment`). Its id is the id of its underlying M2 reservation. |
