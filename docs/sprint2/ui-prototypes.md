@@ -35,10 +35,10 @@ Frame names in Figma use the same codes as `ui-screens.md`. The FR column follow
 | SCR-05 | Daily Appointments & Lab Approval | Instructor | US-19, US-13 | FR-M3-04, FR-M3-05, FR-M4-06 | Must | `SCR-05 Daily Appointments & Lab Approval` | Main journey | Ready for review |
 | SCR-06 | Device Training & Authorization | Student, Research Assistant | US-18, US-14 | FR-M3-07, FR-M3-08, FR-M4-03, FR-M4-04 | Must | `SCR-06 Device Training & Authorization` | Main journey | Ready for review |
 | SCR-07 | Lab Catalog & Reservation | Student | US-12, US-06 | FR-M2-01 … FR-M2-06, FR-M3-03, FR-M3-05, FR-M3-06, FR-M3-08 | Must | `SCR-07 Lab Catalog & Reservation` | Main journey | Ready for review |
-| SCR-08 | Lab Management & Check-out/Return | Research Assistant, Admin | US-08, US-13, US-15, US-16 | FR-M2-07 … FR-M2-09, FR-M3-06, FR-M3-09 … FR-M3-11 | US-08, US-13: Must · others: Should | `SCR-08 Lab Management & Check-out/Return` | Main journey | Ready for review |
+| SCR-08 | Lab Management & Check-out/Return | Research Assistant, Admin | US-08, US-13, US-15, US-16 | FR-M2-07 … FR-M2-09, FR-M3-06, FR-M3-09 … FR-M3-11 | US-08, US-13: Must · others: Should | `SCR-08 Lab Management & Check-out and Return` | Main journey | Ready for review |
 | SCR-09 | Secretary & Admin Management | Secretary, Admin | US-20, US-05, US-03 | FR-M1-05, FR-M1-06, FR-M1-09, FR-M4-07 | US-20: Must · others: Should | `SCR-09 Secretary & Admin Management` | Other screens and states | Ready for review |
 | SCR-10 | Redirect & Help Request | Instructor, Student | US-21, US-22 | FR-M4-08, FR-M4-09 | Should | `SCR-10 Redirect & Help Request` | Other screens and states | Ready for review |
-| SCR-11 | Device/Room Catalog Management | Research Assistant, Admin | US-11 | FR-M3-01, FR-M3-02 | Must | `SCR-11 Device/Room Catalog Management` | Other screens and states | Ready for review |
+| SCR-11 | Device/Room Catalog Management | Research Assistant, Admin | US-11 | FR-M3-01, FR-M3-02 | Must | `SCR-11 Device and Room Catalog Management` | Other screens and states | Ready for review |
 | CMP-01 | Notification Center (header component) | All signed-in roles | US-04 | FR-M1-07, FR-M1-08, FR-M3-08 | Must (in-app) | `CMP-01 Notification Center` | Other screens and states | Ready for review |
 | ERR-403 | Forbidden page | All signed-in roles | US-02 | FR-M1-04 | Must | `ERR-403 Forbidden page` | Other screens and states | Ready for review |
 
