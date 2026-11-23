@@ -540,7 +540,11 @@ paths:
       tags: [M2 Booking Core]
       operationId: cancelReservation
       summary: Cancel own reservation or appointment before it starts
-      description: The interval becomes free immediately. Works for LAB reservations and appointments.
+      description: |
+        The interval becomes free immediately. Works for LAB reservations and appointments.
+        At or after startsAt → 409 CANCELLATION_WINDOW_PASSED. A booking that is not
+        PENDING or APPROVED (already CANCELLED, REJECTED, CHECKED_IN or COMPLETED)
+        → 409 INVALID_STATE_TRANSITION (FR-M2-08).
       x-story: [US-09]
       x-priority: must
       requestBody:
@@ -1346,7 +1350,7 @@ components:
       properties:
         id: { type: string, example: RSV-1048 }
         kind: { $ref: '#/components/schemas/ReservationKind' }
-        resourceId: { type: string, description: 'Device/room id, or host-time resource for appointments' }
+        resourceId: { type: string, description: 'Bookable key: Resource id (device/room) for LAB, Slot id for APPOINTMENT' }
         ownerId: { type: string }
         startsAt: { type: string, format: date-time }
         endsAt: { type: string, format: date-time }
