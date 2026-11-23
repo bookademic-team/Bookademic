@@ -190,19 +190,23 @@ Self-registration creates only `STUDENT` accounts; staff roles are assigned by a
 
 The survey in [`survey.md`](../sprint1/survey.md) is the primary evidence for the problem statement. Results are reported with the analysis plan of the survey. They come from a small convenience sample and are directional evidence only, read together with the published studies in [proposal §1.2](../sprint1/proposal.md).
 
-**Status: pending – the survey is still open.** The Result column is filled from the Google Forms summary when the survey closes; until then no figure is reported.
+Responses: **n = 43** (target was 30+), anonymous Google Forms survey in Turkish, collected in November 2026. 30 of 43 respondents (69.8%) work on a course or graduation project this semester; 2nd year 23.3%, 3rd year 39.5%, 4th year 27.9%, 1st year and graduate 9.3% together.
 
-Responses: **n = pending – survey still open** (target 30+).
-
-| Output | Question | Result | Requirement it supports |
+| Output | Question | Result (n = 43) | Requirement it supports |
 |---|---|---|---|
-| Share of students who never attend office hours | Q3 | Pending – survey still open | FR-M4-01 … FR-M4-05 (bookable office hours) |
-| Most frequent reasons for not attending (top 3) | Q4 | Pending – survey still open | FR-M4-07 (timely cancellation), FR-M1-07 (notifications) |
-| Value of knowing the topic in advance (mean, 1–5) | Q5 | Pending – survey still open | FR-M4-03 (mandatory topic note) |
-| Lab conflicts / untrained use / lack of information | Q7 | Pending – survey still open | FR-M2-04 (no double booking), FR-M2-03 (eligibility), FR-M3-03 (catalogue) |
-| Slowness of the approval process (took several days or gave up) | Q8 | Pending – survey still open | FR-M3-04 … FR-M3-06 (lab approval in the system) |
-| Ease of reaching the assistant (mean, 1–5) | Q9 | Pending – survey still open | FR-M4-09 (help appointment) |
-| Need for the solution (mean; share of 4–5) | Q10 | Pending – survey still open | Whole product |
+| Share of students who never attend office hours | Q3 | 14.0% never; 46.5% only 1–2 times per semester | FR-M4-01 … FR-M4-05 (bookable office hours) |
+| Most frequent reasons for not attending (top 3, multiple choice) | Q4 | Don't know when the instructor is available 58.1%; instructor not in the office / office hours cancelled 34.9%; something else came up 16.3% | FR-M4-01, FR-M4-02 (published schedules and slots), FR-M4-07 (timely cancellation), FR-M1-07 (notifications) |
+| Value of knowing the topic in advance (mean, 1–5) | Q5 | Mean 3.88; 65.1% chose 4–5 | FR-M4-03 (mandatory topic note) |
+| Lab conflicts / untrained use / lack of information (multiple choice) | Q7 | Double booking 4.7%; saw devices used without training 14.0%; couldn't find out whether a device was available 14.0%; 51.2% had no problems | FR-M2-04 (no double booking), FR-M2-03 (eligibility), FR-M3-03 (catalogue) |
+| Slowness of the approval process (took several days or gave up) | Q8 | 32.6% of all respondents (14 of 43); 73.7% of those who needed an approval (14 of 19); 20.9% could not get it or gave up | FR-M3-04 … FR-M3-06 (lab approval in the system) |
+| Ease of reaching the assistant (mean, 1–5) | Q9 | Mean 3.19; only 37.2% chose 4–5 | FR-M4-09 (help appointment) |
+| Need for the solution (mean; share of 4–5) | Q10 | Mean 4.42; 81.4% chose 4–5 (67.4% chose 5) | Whole product |
+
+**Notes on the data.**
+
+- Lab use is the minority case: 62.8% did not need a lab device (Q6). Q7 was answered by all 43 respondents (the form did not skip it), so its shares are of all respondents; the lab findings are weaker evidence than the office-hour findings.
+- The open-ended question received 8 answers. The most frequent themes were instructor availability, notifications (including a notice when a slot frees up) and easier contact; this supports FR-M4-02 and FR-M1-07. One answer asked for chat, which is out of scope (vision §3.2).
+- The sample is small (n = 43, one department, convenience sample) and cannot be generalised; it is reported as directional evidence together with the published studies in [proposal §1.2](../sprint1/proposal.md).
 
 ---
 
