@@ -4,7 +4,7 @@ info:
   version: 0.2.3
   summary: Shared booking core for office hours and laboratory resources.
   description: |
-    API-first contract for Bookademic (SENG 321, Sprint 1).
+    API-first contract for Bookademic (SENG 321; created in Sprint 1, updated in Sprint 2).
 
     **Architecture.** Modular monolith with four modules. M2 (Booking Core) owns the
     interval conflict check and the reservation state machine. M3 (Lab) and M4

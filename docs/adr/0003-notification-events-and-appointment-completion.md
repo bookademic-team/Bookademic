@@ -11,7 +11,7 @@
 
 ## Context
 
-The system sends six kinds of notifications (`NotificationType` in OpenAPI v0.2.2): `RESERVATION_APPROVED`, `RESERVATION_REJECTED`, `RESERVATION_CANCELLED`, `OFFICE_HOUR_CANCELLED`, `APPOINTMENT_REDIRECTED`, `TRAINING_GRANTED`. Each one is shown in the app (US-04, `GET /notifications`) and sent as e-mail through the **SMTP service** (US-23; Mailpit in development).
+The system sends six kinds of notifications (`NotificationType` in OpenAPI v0.2.3): `RESERVATION_APPROVED`, `RESERVATION_REJECTED`, `RESERVATION_CANCELLED`, `OFFICE_HOUR_CANCELLED`, `APPOINTMENT_REDIRECTED`, `TRAINING_GRANTED`. Each one is shown in the app (US-04, `GET /notifications`) and sent as e-mail through the **SMTP service** (US-23; Mailpit in development).
 
 The things that cause a notification happen in different modules: M2 Booking Core changes reservation status, M3 Lab grants training and starts maintenance, M4 Office Hours cancels days and redirects appointments. Notifications are owned by M1 Identity. ADR-0001 does not allow modules to reference each other's internal projects. The C4 component diagram already shows "M2 → M1: status-change events", but the mechanism was not defined.
 
