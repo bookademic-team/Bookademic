@@ -6,7 +6,7 @@
 | Sprint | 2 (Requirements & Architecture) |
 | Owner | Mürsel – Lead Software Architect |
 | Reviewer | Emir (class attributes must be usable on the screens in `docs/ui-screens.md`) |
-| Related | [C4 model](c4.md), [Database](database.md), [OpenAPI v0.2.2](../api/openapi.yaml), [Vision use cases](../sprint1/vision.md), [Sequences](sequence/) |
+| Related | [C4 model](c4.md), [Database](database.md), [OpenAPI v0.2.3](../api/openapi.yaml), [Vision use cases](../sprint1/vision.md), [Sequences](sequence/) |
 
 This document contains three UML views of Bookademic:
 
@@ -197,6 +197,13 @@ classDiagram
         +Date validUntil
     }
 
+    class HandoverCode {
+        +string reservationId
+        +string codeHash
+        +DateTime expiresAt
+        +DateTime usedAt
+    }
+
     Reservation <|-- Appointment : kind = APPOINTMENT
 
     User "1" --> "0..*" Reservation : owns
@@ -212,6 +219,7 @@ classDiagram
     User "1" --> "0..*" TrainingAuthorization : student / grantedBy
     User "1" --> "0..*" Notification : receives
     Notification "0..*" --> "0..1" Reservation : about
+    Reservation "1" --> "0..1" HandoverCode : check-out code (US-15)
 ```
 
 ### 2.1 Enumerations
@@ -246,7 +254,7 @@ Values are exactly the OpenAPI enums (upper case).
 |---|---|
 | M1 Identity | `User`, `Notification` |
 | M2 Booking Core | `Reservation`, `StatusChange` |
-| M3 Lab | `Resource`, `LabApproval`, `TrainingAuthorization` |
+| M3 Lab | `Resource`, `LabApproval`, `TrainingAuthorization`, `HandoverCode` |
 | M4 Office Hours | `OfficeHourSchedule`, `Slot`, `Appointment` |
 
 ---
@@ -264,6 +272,7 @@ stateDiagram-v2
 
     APPROVED --> CHECKED_IN : POST /reservations/{id}/check-in<br/>(valid handover code)
     APPROVED --> COMPLETED : POST /training-authorizations<br/>(TRAINING appointment)
+    APPROVED --> COMPLETED : system job after endsAt<br/>(OFFICE_HOUR / SUPPORT, ADR-0003)
     APPROVED --> CANCELLED : cancel, day cancellation,<br/>redirect or maintenance
 
     CHECKED_IN --> COMPLETED : POST /reservations/{id}/return
@@ -280,17 +289,18 @@ The six states are exactly the `ReservationStatus` enum. **Active** states are `
 | From | To | Trigger (endpoint) | Who | Guard | Error if not allowed |
 |---|---|---|---|---|---|
 | – | PENDING | `POST /reservations` | Student | Valid interval; resource available; active lab approval and training for the category; no overlap | 400 `INVALID_INTERVAL`, 403 `LAB_APPROVAL_REQUIRED` / `TRAINING_REQUIRED`, 409 `RESOURCE_IN_MAINTENANCE` / `SLOT_UNAVAILABLE` |
-| – | APPROVED | `POST /appointments` | Student | Slot free; topic 10–500 characters; one appointment per staff member per day | 400 `VALIDATION_ERROR`, 409 `SLOT_UNAVAILABLE` / `DAILY_APPOINTMENT_LIMIT` |
+| – | APPROVED | `POST /appointments` | Student | Slot exists, free and not started; topic 10–500 characters; one appointment per staff member per day | 400 `VALIDATION_ERROR`, 400 `INVALID_INTERVAL` (slot already started), 404 `NOT_FOUND`, 409 `SLOT_UNAVAILABLE` / `DAILY_APPOINTMENT_LIMIT` |
 | PENDING | APPROVED | `POST /reservations/{id}/approve` | Research Assistant, Admin | – | 409 `INVALID_STATE_TRANSITION` |
 | PENDING | REJECTED | `POST /reservations/{id}/reject` | Research Assistant, Admin | Reason at least 5 characters | 400, 409 `INVALID_STATE_TRANSITION` |
 | PENDING, APPROVED | CANCELLED | `POST /reservations/{id}/cancel` | Owner | Before `startsAt` | 409 `CANCELLATION_WINDOW_PASSED` |
 | APPROVED | CANCELLED | `POST /office-hours/{id}/cancellations` | Secretary, Admin, host | Appointment on the cancelled day | – |
 | APPROVED | CANCELLED | `POST /appointments/{id}/redirect` | Instructor | Free target support slot (a new appointment is created) | 409 `NO_AVAILABLE_SLOT` |
 | PENDING, APPROVED | CANCELLED | `POST /resources/{id}/maintenance` | Research Assistant, Admin | Future reservations of that resource | – |
-| APPROVED | CHECKED_IN | `POST /reservations/{id}/check-in` | Research Assistant | Valid 6-digit handover code (US-15) | 400 `INVALID_HANDOVER_CODE`, 409 |
+| APPROVED | CHECKED_IN | `POST /reservations/{id}/check-in` | Research Assistant | Valid 6-digit handover code (US-15) | 400 `INVALID_HANDOVER_CODE`, 409 `INVALID_STATE_TRANSITION` |
 | APPROVED | COMPLETED | `POST /training-authorizations` | Research Assistant | Appointment is a `TRAINING` appointment | 400 `NOT_A_TRAINING_APPOINTMENT`, 409 `TRAINING_ALREADY_GRANTED` |
+| APPROVED | COMPLETED | – (background job every 5 min, ADR-0003) | System job; recorded with `changedBy` = host | `OFFICE_HOUR` or `SUPPORT` appointment whose `endsAt` has passed | – (no request, no notification) |
 | CHECKED_IN | COMPLETED | `POST /reservations/{id}/return` | Research Assistant | – | 409 `INVALID_STATE_TRANSITION` |
 
 Every transition writes a `StatusChange` row (who, when, from, to, reason) and publishes an event that M1 Identity turns into a notification where the use case table above lists one.
 
-**Appointment completion:** OpenAPI v0.2.2 has no endpoint to complete an appointment. [ADR-0003](../adr/0003-notification-events-and-appointment-completion.md) decides that a background job moves `APPROVED` `OFFICE_HOUR` and `SUPPORT` appointments to `COMPLETED` automatically after `endsAt` (`changedBy` = host). `TRAINING` appointments are completed only by `POST /training-authorizations`. No contract change is needed.
+**Appointment completion:** OpenAPI v0.2.3 has no endpoint to complete an appointment. [ADR-0003](../adr/0003-notification-events-and-appointment-completion.md) decides that a background job moves `APPROVED` `OFFICE_HOUR` and `SUPPORT` appointments to `COMPLETED` automatically after `endsAt` (row "system job" above). `changedBy` is the host, because `status_changes.changed_by` must be a real user id and the role enum has no system user; the history row's `reason` says "Completed automatically after the end time". `TRAINING` appointments are completed only by `POST /training-authorizations`. No contract change is needed.
