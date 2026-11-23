@@ -6,7 +6,7 @@
 | Sprint | 2 (Requirements & Architecture) |
 | Owner | Mürsel – Lead Software Architect |
 | Reviewer | Mirac (do the tables cover the functional requirements; are the constraints testable) |
-| Related | [ADR-0001](../adr/0001-tech-stack.md), [UML class diagram](uml.md#2-domain-class-diagram), [C4 components](c4.md#3-level-3--components-of-the-api), [OpenAPI v0.2.2](../api/openapi.yaml) |
+| Related | [ADR-0001](../adr/0001-tech-stack.md), [UML class diagram](uml.md#2-domain-class-diagram), [C4 components](c4.md#3-level-3--components-of-the-api), [OpenAPI v0.2.3](../api/openapi.yaml) |
 
 The **Database** container is a single PostgreSQL 17 database. Each API module owns one **schema** and is the only component that reads or writes its tables. Tables are created by EF Core code-first migrations (one `DbContext` per module).
 
@@ -387,7 +387,7 @@ Primary keys and `UNIQUE` constraints create their own indexes. Additional index
 | Check | Source of truth | Status |
 |---|---|---|
 | Table names | Sprint 2 vocabulary (snake_case plural of entity names) | Matches; `audit_log`, `handover_codes` added |
-| Columns | OpenAPI v0.2.2 schemas and [UML class diagram](uml.md) | Every OpenAPI field maps to a column or a derived value |
+| Columns | OpenAPI v0.2.3 schemas and [UML class diagram](uml.md) | Every OpenAPI field maps to a column or a derived value |
 | Enum values | OpenAPI enums | Identical `CHECK` lists |
 | Module ownership | [C4 Level 3](c4.md) | One schema per component |
 | Overlap rule | ADR-0001 | Same constraint and statuses |
