@@ -1,10 +1,194 @@
-# Bookademic – Individual Contributions (Sprint 1)
+# Bookademic – Individual Contributions
 
-Repository: https://github.com/bookademic-team/Bookademic · Release: `v0.1.0-sprint1` · Course: SENG 321 Software Engineering, Fall 2026
+Repository: https://github.com/bookademic-team/Bookademic · Course: SENG 321 Software Engineering, Fall 2026
 
-Every item below links to its GitHub record. Counts cover the `develop` branch up to the Sprint 1 release.
+Every item below links to its GitHub record. The newest sprint comes first.
 
-## Summary
+## Sprint 2 – Requirements & Architecture
+
+Release: `v0.2.0-sprint2` · Milestone: [Sprint 2](https://github.com/bookademic-team/Bookademic/milestone/2?closed=1) · Counts cover the pull requests merged into `develop` for Sprint 2 (#72 … #98). Pull request [#99](https://github.com/bookademic-team/Bookademic/pull/99) (this record) and the release pull request are listed under their owners but not counted.
+
+### Summary
+
+| Member | Role | Commits | PRs merged | PRs reviewed |
+|---|---|:-:|:-:|:-:|
+| Melih Adıgüzel | Product Owner & Requirements Engineer | 13 | 6 | 5 |
+| Sıla Yıldırım | Scrum Master & Agile Process Coach | 4 | 2 | 3 |
+| Mürsel Debbağ | Lead Software Architect & Technical Lead | 17 | 7 | 8 |
+| Muhammed Mirac Kocadağ | Quality Assurance & Test Automation Engineer | 7 | 2 | 4 |
+| Mehmet Çalışkan | DevOps & CI/CD Infrastructure Engineer | 7 | 3 | 2 |
+| Emir Altunbulak | Implementation & Integration Engineer | 16 | 4 | 2 |
+
+### Melih Adıgüzel
+
+- **GitHub:** [@melihdgzl](https://github.com/melihdgzl) · [Sprint 2 commits](https://github.com/bookademic-team/Bookademic/commits/develop?author=melihdgzl&since=2026-11-16)
+
+**Sprint 2 work**
+
+- Software Requirements Specification: functional requirements, use cases UC-1 … UC-8, data and interface requirements, traceability matrix ([`srs.md`](docs/sprint2/srs.md)), with QA clarifications C1–C5 and the glossary fix for appointments
+- Refined product backlog: Sprint 3 MVP selection, refined acceptance criteria, implementation order ([`backlog.md`](docs/sprint2/backlog.md), [`issues.csv`](docs/sprint2/issues.csv)); story Issues synced with `sync_issues.py`
+- US-13 lab access approval sequence diagram ([`US-13.md`](docs/architecture/sequence/US-13.md))
+- Product Owner review and approval of the Figma prototypes (#92, #97, #98) and the NFRs (#80)
+
+**Issues**
+
+- [#60](https://github.com/bookademic-team/Bookademic/issues/60) Software Requirements Specification (SRS), [#61](https://github.com/bookademic-team/Bookademic/issues/61) Refine product backlog for Sprint 3
+- Shared: [#68](https://github.com/bookademic-team/Bookademic/issues/68) Sequence diagrams for owned stories
+
+**Pull requests (authored, merged)**
+
+- [#82](https://github.com/bookademic-team/Bookademic/pull/82) docs(srs): add Software Requirements Specification (#60)
+- [#83](https://github.com/bookademic-team/Bookademic/pull/83) docs(backlog): refine product backlog for Sprint 3 (#61)
+- [#84](https://github.com/bookademic-team/Bookademic/pull/84) docs(srs): QA clarifications for testability (#60)
+- [#85](https://github.com/bookademic-team/Bookademic/pull/85) docs(sequence): US-13 lab access approval (#68)
+- [#93](https://github.com/bookademic-team/Bookademic/pull/93) docs(srs): clarify Resource glossary entry (#60)
+- [#95](https://github.com/bookademic-team/Bookademic/pull/95) docs(srs): update OpenAPI references to v0.2.3 (#60)
+
+**Reviews given**
+
+- [#78](https://github.com/bookademic-team/Bookademic/pull/78) (approved → approved), [#80](https://github.com/bookademic-team/Bookademic/pull/80) (changes requested → approved), [#92](https://github.com/bookademic-team/Bookademic/pull/92) (changes requested → approved), [#97](https://github.com/bookademic-team/Bookademic/pull/97) (approved), [#98](https://github.com/bookademic-team/Bookademic/pull/98) (approved)
+
+### Sıla Yıldırım
+
+- **GitHub:** [@silayildrm06-cell](https://github.com/silayildrm06-cell) · [Sprint 2 commits](https://github.com/bookademic-team/Bookademic/commits/develop?author=silayildrm06-cell&since=2026-11-16)
+
+**Sprint 2 work**
+
+- Sprint 1 retrospective and Sprint 2 planning, including the "dependent work in order" rule ([`retrospective`](docs/meetings/2026-11-16-sprint1-retrospective.md), [`planning`](docs/meetings/2026-11-16-sprint2-planning.md))
+- Sprint 2 Issues, owners, reviewers and deadlines; daily GitHub status checks and follow-up in the team chat
+- Stand-up records of 20 and 22 November ([`docs/meetings/`](docs/meetings/)), README documentation table and this contributions record
+- US-09 cancellation sequence diagram ([`US-09.md`](docs/architecture/sequence/US-09.md))
+- Issue and pull request hygiene: closing keywords, milestones, wrongly named branch removed
+
+**Issues**
+
+- [#58](https://github.com/bookademic-team/Bookademic/issues/58) Sprint 1 retrospective and Sprint 2 planning notes, [#69](https://github.com/bookademic-team/Bookademic/issues/69) Stand-up records, README and Sprint 2 contributions
+- Shared: [#68](https://github.com/bookademic-team/Bookademic/issues/68) Sequence diagrams for owned stories
+
+**Pull requests (authored, merged)**
+
+- [#72](https://github.com/bookademic-team/Bookademic/pull/72) docs: Sprint 1 retrospective and Sprint 2 planning notes (#58)
+- [#86](https://github.com/bookademic-team/Bookademic/pull/86) docs(architecture): US-09 cancellation sequence diagram (#68)
+- [#99](https://github.com/bookademic-team/Bookademic/pull/99) docs: stand-up records, README and Sprint 2 contributions (#69) (reviewer: Mirac)
+
+**Reviews given**
+
+- [#76](https://github.com/bookademic-team/Bookademic/pull/76) (approved), [#83](https://github.com/bookademic-team/Bookademic/pull/83) (approved), [#90](https://github.com/bookademic-team/Bookademic/pull/90) (approved)
+
+### Mürsel Debbağ
+
+- **GitHub:** [@murseldbbg](https://github.com/murseldbbg) · [Sprint 2 commits](https://github.com/bookademic-team/Bookademic/commits/develop?author=murseldbbg&since=2026-11-16)
+
+**Sprint 2 work**
+
+- C4 context, container and component diagrams ([`c4.md`](docs/architecture/c4.md))
+- UML use case, domain class and reservation state machine diagrams ([`uml.md`](docs/architecture/uml.md))
+- Database schema with ERD and `EXCLUDE USING gist` constraint ([`database.md`](docs/architecture/database.md))
+- ADR-0002 JWT authentication and ADR-0003 notification events ([`docs/adr/`](docs/adr/))
+- OpenAPI contract v0.2.3 ([`openapi.yaml`](docs/api/openapi.yaml)); US-06 lab reservation sequence diagram ([`US-06.md`](docs/architecture/sequence/US-06.md))
+
+**Issues**
+
+- [#62](https://github.com/bookademic-team/Bookademic/issues/62) C4 context, container and component diagrams, [#63](https://github.com/bookademic-team/Bookademic/issues/63) UML diagrams, [#64](https://github.com/bookademic-team/Bookademic/issues/64) Database schema (ERD), [#65](https://github.com/bookademic-team/Bookademic/issues/65) ADR-0002 and later architecture decisions, [#77](https://github.com/bookademic-team/Bookademic/issues/77) OpenAPI v0.2.3
+- Shared: [#68](https://github.com/bookademic-team/Bookademic/issues/68) Sequence diagrams for owned stories
+
+**Pull requests (authored, merged)**
+
+- [#73](https://github.com/bookademic-team/Bookademic/pull/73) docs: C4 context, container and component diagrams (#62)
+- [#74](https://github.com/bookademic-team/Bookademic/pull/74) docs: UML diagrams (use case, class, state machine) (#63)
+- [#75](https://github.com/bookademic-team/Bookademic/pull/75) docs: database schema (ERD) (#64)
+- [#76](https://github.com/bookademic-team/Bookademic/pull/76) docs: ADR-0002 JWT authentication and ADR-0003 notification events (#65)
+- [#78](https://github.com/bookademic-team/Bookademic/pull/78) docs(api): OpenAPI v0.2.3 – description-only rules from SRS C1 (#77)
+- [#87](https://github.com/bookademic-team/Bookademic/pull/87) docs(sequence): add US-06 diagram (#68)
+- [#96](https://github.com/bookademic-team/Bookademic/pull/96) docs(db): reference OpenAPI v0.2.3 (#64)
+
+**Reviews given**
+
+- [#81](https://github.com/bookademic-team/Bookademic/pull/81) (approved), [#85](https://github.com/bookademic-team/Bookademic/pull/85) (approved), [#86](https://github.com/bookademic-team/Bookademic/pull/86) (approved), [#88](https://github.com/bookademic-team/Bookademic/pull/88) (approved), [#91](https://github.com/bookademic-team/Bookademic/pull/91) (approved), [#93](https://github.com/bookademic-team/Bookademic/pull/93) (approved), [#94](https://github.com/bookademic-team/Bookademic/pull/94) (approved), [#95](https://github.com/bookademic-team/Bookademic/pull/95) (approved)
+
+### Muhammed Mirac Kocadağ
+
+- **GitHub:** [@muhammedkocadag](https://github.com/muhammedkocadag) · [Sprint 2 commits](https://github.com/bookademic-team/Bookademic/commits/develop?author=muhammedkocadag&since=2026-11-16)
+
+**Sprint 2 work**
+
+- Non-functional requirements and quality measures with metrics, targets and test methods ([`nfr.md`](docs/sprint2/nfr.md))
+- US-20 office-hour day cancellation sequence diagram with test mapping ([`US-20.md`](docs/architecture/sequence/US-20.md))
+- QA reviews of the SRS (testability clarifications) and the database schema
+
+**Issues**
+
+- [#66](https://github.com/bookademic-team/Bookademic/issues/66) Non-functional requirements and quality measures
+- Shared: [#68](https://github.com/bookademic-team/Bookademic/issues/68) Sequence diagrams for owned stories
+
+**Pull requests (authored, merged)**
+
+- [#80](https://github.com/bookademic-team/Bookademic/pull/80) docs(qa): add non-functional requirements (#66)
+- [#81](https://github.com/bookademic-team/Bookademic/pull/81) docs(architecture): US-20 office-hour day cancellation sequence diagram (#68)
+
+**Reviews given**
+
+- [#75](https://github.com/bookademic-team/Bookademic/pull/75) (changes requested → approved), [#82](https://github.com/bookademic-team/Bookademic/pull/82) (approved), [#84](https://github.com/bookademic-team/Bookademic/pull/84) (approved), [#96](https://github.com/bookademic-team/Bookademic/pull/96) (approved)
+
+### Mehmet Çalışkan
+
+- **GitHub:** [@Mhmt-Clskn](https://github.com/Mhmt-Clskn) · [Sprint 2 commits](https://github.com/bookademic-team/Bookademic/commits/develop?author=Mhmt-Clskn&since=2026-11-16)
+
+**Sprint 2 work**
+
+- C4 deployment view: Docker Compose services, ports, health checks and environment variables, incl. `JWT_SIGNING_KEY` ([`deployment.md`](docs/architecture/deployment.md))
+- Issue and pull request templates ([`.github/`](.github/)); Git author name fixed (retrospective action A6)
+- US-02 login and JWT sequence diagram ([`US-02.md`](docs/architecture/sequence/US-02.md))
+- Sprint 2 release `v0.2.0-sprint2` (#70)
+
+**Issues**
+
+- [#59](https://github.com/bookademic-team/Bookademic/issues/59) Issue and pull request templates, [#70](https://github.com/bookademic-team/Bookademic/issues/70) Release v0.2.0-sprint2, [#71](https://github.com/bookademic-team/Bookademic/issues/71) C4 deployment diagram
+- Shared: [#68](https://github.com/bookademic-team/Bookademic/issues/68) Sequence diagrams for owned stories
+
+**Pull requests (authored, merged)**
+
+- [#88](https://github.com/bookademic-team/Bookademic/pull/88) docs(deployment): C4 deployment view and JWT key variable (#71)
+- [#90](https://github.com/bookademic-team/Bookademic/pull/90) chore(github): issue and pull request templates (#59)
+- [#94](https://github.com/bookademic-team/Bookademic/pull/94) docs(sequence): add US-02 diagram (#68)
+- Release pull request `develop` → `main` for `v0.2.0-sprint2` (#70; reviewer: Sıla)
+
+**Reviews given**
+
+- [#72](https://github.com/bookademic-team/Bookademic/pull/72) (approved), [#73](https://github.com/bookademic-team/Bookademic/pull/73) (approved)
+
+### Emir Altunbulak
+
+- **GitHub:** [@emiraltunbulak-dotcom](https://github.com/emiraltunbulak-dotcom) · [Sprint 2 commits](https://github.com/bookademic-team/Bookademic/commits/develop?author=emiraltunbulak-dotcom&since=2026-11-16)
+
+**Sprint 2 work**
+
+- Figma prototypes for SCR-01 … SCR-11, CMP-01 and the 403 page, clickable MVP journey, PNG exports and one user flow per role ([`ui-prototypes.md`](docs/sprint2/ui-prototypes.md), [`figma/`](docs/sprint2/figma/))
+- Screen list updated to OpenAPI v0.2.3 ([`ui-screens.md`](docs/ui-screens.md))
+- US-18 appointment booking sequence diagram ([`US-18.md`](docs/architecture/sequence/US-18.md))
+- Architecture reviews of the UML diagrams and the US-06 sequence diagram
+
+**Issues**
+
+- [#67](https://github.com/bookademic-team/Bookademic/issues/67) Figma prototypes and user-flow diagrams
+- Shared: [#68](https://github.com/bookademic-team/Bookademic/issues/68) Sequence diagrams for owned stories
+
+**Pull requests (authored, merged)**
+
+- [#91](https://github.com/bookademic-team/Bookademic/pull/91) docs(sequence): add US-18 sequence diagram (#68)
+- [#92](https://github.com/bookademic-team/Bookademic/pull/92) docs(sprint2): add ui-prototypes skeleton (Refs #67)
+- [#97](https://github.com/bookademic-team/Bookademic/pull/97) docs(figma): rename frames, remove "/" from names, re-export PNGs (#67)
+- [#98](https://github.com/bookademic-team/Bookademic/pull/98) docs(ui-screens): update OpenAPI references to v0.2.3 (#67)
+
+**Reviews given**
+
+- [#74](https://github.com/bookademic-team/Bookademic/pull/74) (changes requested → approved), [#87](https://github.com/bookademic-team/Bookademic/pull/87) (changes requested → approved)
+
+## Sprint 1 – Project Foundation
+
+Release: `v0.1.0-sprint1` · Counts cover the `develop` branch up to the Sprint 1 release.
+
+### Summary
 
 | Member | Student no. | GitHub | Role | Commits | PRs merged | Reviews given |
 |---|---|---|---|:-:|:-:|:-:|
@@ -15,7 +199,7 @@ Every item below links to its GitHub record. Counts cover the `develop` branch u
 | Mehmet Çalışkan | 230204011 | [@Mhmt-Clskn](https://github.com/Mhmt-Clskn) | DevOps & CI/CD Infrastructure Engineer | 4 | 3 | 2 |
 | Emir Altunbulak | 220205048 | [@emiraltunbulak-dotcom](https://github.com/emiraltunbulak-dotcom) | Implementation & Integration Engineer | 5 | 3 | 3 |
 
-## Melih Adıgüzel
+### Melih Adıgüzel
 
 - **Student number:** 230204060
 - **GitHub:** [@melihdgzl](https://github.com/melihdgzl)
@@ -48,7 +232,7 @@ Every item below links to its GitHub record. Counts cover the `develop` branch u
 - [`2d9341f`](https://github.com/bookademic-team/Bookademic/commit/2d9341f26dc52c10ae62c810c018262f87f68153) docs(sprint1): fix product docs (#52) (2026-11-05)
 - [`225ecf2`](https://github.com/bookademic-team/Bookademic/commit/225ecf21f41c037b97bd0c3366c67dc93dee5c46) docs(sprint1): add product docs (#34) (2026-11-03)
 
-## Sıla Yıldırım
+### Sıla Yıldırım
 
 - **Student number:** 220201015
 - **GitHub:** [@silayildrm06-cell](https://github.com/silayildrm06-cell)
@@ -89,7 +273,7 @@ Every item below links to its GitHub record. Counts cover the `develop` branch u
 - [`c18ce5d`](https://github.com/bookademic-team/Bookademic/commit/c18ce5df7df8ac4c34a508b1a8bf259f0201ade3) docs: move RACI matrix to docs/sprint1 (#28) (2026-11-03)
 - [`4555d15`](https://github.com/bookademic-team/Bookademic/commit/4555d155b6ed0fac6ac44839dfc254e8750dd876) docs: add team roles and RACI matrix (#28) (2026-11-03)
 
-## Mürsel Debbağ
+### Mürsel Debbağ
 
 - **Student number:** 230204037
 - **GitHub:** [@murseldbbg](https://github.com/murseldbbg)
@@ -130,7 +314,7 @@ Every item below links to its GitHub record. Counts cover the `develop` branch u
 - [`c3f540b`](https://github.com/bookademic-team/Bookademic/commit/c3f540bd3e1f466055aca0481936326efdfca1cd) docs(adr): add technology stack decision (#32) (2026-11-03)
 - [`1e70247`](https://github.com/bookademic-team/Bookademic/commit/1e702474f7c65dc92d5bf98aec2fc81997bd7978) docs(api): add OpenAPI contract v0.2.2 (2026-11-03)
 
-## Muhammed Mirac Kocadağ
+### Muhammed Mirac Kocadağ
 
 - **Student number:** 220201033
 - **GitHub:** [@muhammedkocadag](https://github.com/muhammedkocadag)
@@ -164,7 +348,7 @@ Every item below links to its GitHub record. Counts cover the `develop` branch u
 - [`795b9d3`](https://github.com/bookademic-team/Bookademic/commit/795b9d3dd99e530a0dcd31f0df5084ea69b551b3) docs(qa): translate test plan and qa strategy to English (2026-11-03)
 - [`a2a31db`](https://github.com/bookademic-team/Bookademic/commit/a2a31db28300e8cd3d39b63cf6f8cda2433613c8) docs(qa): add comprehensive sprint 1 test strategy and plan (2026-11-03)
 
-## Mehmet Çalışkan
+### Mehmet Çalışkan
 
 - **Student number:** 230204011
 - **GitHub:** [@Mhmt-Clskn](https://github.com/Mhmt-Clskn)
@@ -199,7 +383,7 @@ Every item below links to its GitHub record. Counts cover the `develop` branch u
 - [`f09f441`](https://github.com/bookademic-team/Bookademic/commit/f09f4411407fbefca44add6e27768ae7ccaae097) feat(devops): add docker-compose skeleton for local development (2026-11-02)
 - [`bc02531`](https://github.com/bookademic-team/Bookademic/commit/bc02531d0629e2c639546dbcd053baf6de8f75d7) Initial commit (2026-11-02)
 
-## Emir Altunbulak
+### Emir Altunbulak
 
 - **Student number:** 220205048
 - **GitHub:** [@emiraltunbulak-dotcom](https://github.com/emiraltunbulak-dotcom)
