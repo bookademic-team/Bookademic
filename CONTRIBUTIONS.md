@@ -6,7 +6,7 @@ Every item below links to its GitHub record. The newest sprint comes first.
 
 ## Sprint 2 – Requirements & Architecture
 
-Release: `v0.2.0-sprint2` · Milestone: [Sprint 2](https://github.com/bookademic-team/Bookademic/milestone/2?closed=1) · Counts cover the pull requests merged into `develop` for Sprint 2 (#72 … #98). Pull request #69 (this record) and the release pull request are listed under their owners but not counted.
+Release: `v0.2.0-sprint2` · Milestone: [Sprint 2](https://github.com/bookademic-team/Bookademic/milestone/2?closed=1) · Counts cover the pull requests merged into `develop` for Sprint 2 (#72 … #98). Pull request [#99](https://github.com/bookademic-team/Bookademic/pull/99) (this record) and the release pull request are listed under their owners but not counted.
 
 ### Summary
 
@@ -69,7 +69,7 @@ Release: `v0.2.0-sprint2` · Milestone: [Sprint 2](https://github.com/bookademic
 
 - [#72](https://github.com/bookademic-team/Bookademic/pull/72) docs: Sprint 1 retrospective and Sprint 2 planning notes (#58)
 - [#86](https://github.com/bookademic-team/Bookademic/pull/86) docs(architecture): US-09 cancellation sequence diagram (#68)
-- #69 stand-up records, README and this file (open at the time of writing; reviewer: Mirac)
+- [#99](https://github.com/bookademic-team/Bookademic/pull/99) docs: stand-up records, README and Sprint 2 contributions (#69) (reviewer: Mirac)
 
 **Reviews given**
 
