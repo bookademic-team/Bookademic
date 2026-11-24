@@ -7,13 +7,13 @@
 | Decision owner (A) | Mürsel – Lead Software Architect |
 | Consulted (C) | Mehmet (M1 Identity owner, DevOps), Mirac (QA) |
 | Informed (I) | Emir (Implementation), Melih (PO), Sıla (SM) |
-| Related work | US-01, US-02, US-03, [ADR-0001](0001-tech-stack.md), [OpenAPI v0.2.2](../api/openapi.yaml) (`bearerAuth`, `POST /auth/login`, `TokenResponse`), [C4 containers](../architecture/c4.md#2-level-2--containers) |
+| Related work | US-01, US-02, US-03, [ADR-0001](0001-tech-stack.md), [OpenAPI v0.2.3](../api/openapi.yaml) (`bearerAuth`, `POST /auth/login`, `TokenResponse`), [C4 containers](../architecture/c4.md#2-level-2--containers) |
 
 ## Context
 
 ADR-0001 chose "ASP.NET Core JWT Bearer + role-based policies" but did not fix the details. These details affect every module and the frontend, so they are decided here once:
 
-- The contract already defines the shape: every operation except `POST /auth/register` and `POST /auth/login` requires `bearerAuth`. Login returns a `TokenResponse` (`accessToken`, `tokenType: Bearer`, `expiresIn: 3600`, `user`). There is **no refresh or logout endpoint** in v0.2.2.
+- The contract already defines the shape: every operation except `POST /auth/register` and `POST /auth/login` requires `bearerAuth`. Login returns a `TokenResponse` (`accessToken`, `tokenType: Bearer`, `expiresIn: 3600`, `user`). There is **no refresh or logout endpoint** in v0.2.3.
 - The **Web App** (port 5173) and the **API** (port 8080) run on different origins. Cookie-based sessions would need CORS with credentials and CSRF protection.
 - There are 5 roles: `STUDENT`, `INSTRUCTOR`, `RESEARCH_ASSISTANT`, `SECRETARY`, `ADMIN`. Many rules also depend on ownership: a student may cancel only their own reservation, and an instructor may redirect only their own appointments.
 - Errors use RFC 9457 problem details: `401 UNAUTHORIZED` (missing, invalid or expired token, or wrong credentials) and `403 FORBIDDEN` (the role or ownership does not allow the action).
