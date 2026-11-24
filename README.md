@@ -2,7 +2,7 @@
 
 **A project support platform for university departments.** Bookademic manages, in a single flow, the two scarce resources a project student needs: the instructor's time and the laboratory.
 
-> SENG 321 – Software Engineering Project · Fall 2026 · Current release: **Sprint 1 – Project Foundation** (`v0.1.0-sprint1`)
+> SENG 321 – Software Engineering Project · Fall 2026 · Current release: **Sprint 2 – Requirements & Architecture** (`v0.2.0-sprint2`)
 
 ---
 
@@ -74,7 +74,7 @@ docker compose up
 | Mailpit (dev inbox) | http://localhost:8025 |
 | PostgreSQL | `localhost:5432` |
 
-> **Sprint 1 status:** the compose file starts the infrastructure skeleton (`db`, `api`, `web`, `mailpit`). The `api` and `web` containers are placeholders until the application code is added in Sprint 3.
+> **Status:** the compose file starts the infrastructure skeleton (`db`, `api`, `web`, `mailpit`). The `api` and `web` containers are placeholders until the application code is added in Sprint 3. The services, ports and environment variables are described in the [deployment view](docs/architecture/deployment.md).
 
 **Work against the API before the backend exists:** the contract can be mocked with Prism.
 
@@ -92,7 +92,7 @@ The contract can also be viewed in [Swagger Editor](https://editor.swagger.io/) 
 | [System Vision & Boundary](docs/sprint1/vision.md) | Scope, context diagram, constraints, actors and use cases | Melih |
 | [Product Backlog](docs/sprint1/backlog.md) | Epics, user stories, acceptance criteria, estimates, owners | Melih |
 | [Student Survey](docs/sprint1/survey.md) | Primary-evidence survey and analysis plan | Melih |
-| [OpenAPI Contract](docs/api/openapi.yaml) | API-first contract (v0.2.2) | Mürsel |
+| [OpenAPI Contract](docs/api/openapi.yaml) | API-first contract (v0.2.3) | Mürsel |
 | [Story ↔ API Mapping](docs/api/story-mapping.md) | Traceability from backlog stories to API operations | Mürsel |
 | [ADR-0001 Tech Stack](docs/adr/0001-tech-stack.md) | Architecture and technology decisions | Mürsel |
 | [Test Plan](docs/test-plan.md) | Test strategy, levels, coverage goals, quality gates | Mirac |
@@ -101,6 +101,24 @@ The contract can also be viewed in [Swagger Editor](https://editor.swagger.io/) 
 | [Git-Flow & Repository Workflow](docs/sprint1/git-flow.md) | Branch model, protection, PR and review rules, releases | Sıla |
 | [Individual Contributions](CONTRIBUTIONS.md) | Each member's role, work and GitHub links | Sıla |
 | [Meeting Notes](docs/meetings/) | Team decisions and action items | Sıla |
+
+### Sprint 2 – Requirements & Architecture
+
+| Document | Description | Owner |
+|---|---|---|
+| [Software Requirements Specification](docs/sprint2/srs.md) | Functional requirements (FR), use cases UC-1 … UC-8, data and interface requirements, traceability matrix | Melih |
+| [Refined Product Backlog](docs/sprint2/backlog.md) | Sprint 3 MVP selection, refined acceptance criteria, implementation order | Melih |
+| [Non-Functional Requirements](docs/sprint2/nfr.md) | Quality requirements (performance, security, reliability, usability, maintainability, portability, privacy) with metrics and targets | Mirac |
+| [C4 Model](docs/architecture/c4.md) | Context, container and component diagrams | Mürsel |
+| [Deployment View](docs/architecture/deployment.md) | C4 deployment diagram, Docker Compose services and environment variables | Mehmet |
+| [UML Diagrams](docs/architecture/uml.md) | Use case, domain class and reservation state machine diagrams | Mürsel |
+| [Database Schema](docs/architecture/database.md) | ERD, tables, constraints (`EXCLUDE USING gist`) and module ownership | Mürsel |
+| [Sequence Diagrams](docs/architecture/sequence/) | One sequence diagram per owned story (US-02, US-06, US-09, US-13, US-18, US-20) | All members |
+| [ADR-0002 JWT Authentication](docs/adr/0002-authentication-with-jwt.md) | Token format, roles and policies, token storage in the Web App | Mürsel |
+| [ADR-0003 Notification Events](docs/adr/0003-notification-events-and-appointment-completion.md) | In-process events for notifications and e-mail; appointment completion | Mürsel |
+| [UI Prototypes (Figma)](docs/sprint2/ui-prototypes.md) | Figma link, screen-to-frame map, clickable MVP journey, user flows per role; PNG exports in [`figma/`](docs/sprint2/figma/) | Emir |
+| [Stand-up Records](docs/meetings/) | Sprint 1 retrospective and Sprint 2 planning (16 November), stand-ups (20 and 22 November) | Sıla |
+| [Issue and PR Templates](.github/) | Templates for user stories, tasks, bugs and pull requests | Mehmet |
 
 ## Repository structure
 
@@ -111,11 +129,14 @@ The contract can also be viewed in [Swagger Editor](https://editor.swagger.io/) 
 ├── docs/
 │   ├── adr/              # architecture decision records
 │   ├── api/              # openapi.yaml and story mapping
-│   ├── meetings/         # meeting notes
+│   ├── architecture/     # C4, deployment, UML, database schema, sequence diagrams
+│   ├── meetings/         # meeting notes and stand-up records
 │   ├── sprint1/          # proposal, vision, backlog, survey, RACI, Git-Flow
+│   ├── sprint2/          # SRS, refined backlog, non-functional requirements
 │   ├── test-plan.md
 │   └── ui-screens.md
-├── .env.example          # default database settings for docker compose
+├── .github/              # issue and pull request templates
+├── .env.example          # default settings for docker compose (database, JWT key)
 ├── CONTRIBUTIONS.md      # individual contributions with GitHub links
 ├── docker-compose.yml
 ├── LICENSE
