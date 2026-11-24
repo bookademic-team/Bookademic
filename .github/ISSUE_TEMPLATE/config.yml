@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Team process (Git-Flow and contribution rules)
+    url: https://github.com/bookademic-team/Bookademic/blob/develop/docs/sprint1/git-flow.md
+    about: Read the branch, commit and review rules before opening an issue or PR.

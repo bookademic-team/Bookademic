@@ -6,7 +6,7 @@
 | Sprint | 1 (Sprint 2 preparation) |
 | Author | Emir (M4 – Office Hours & Support) |
 | Related modules | M1 (Identity & Notifications), M2 (Booking Core), M3 (Lab), M4 (Office Hours) |
-| Sources | `docs/sprint1/proposal.md` (§1.4), `docs/sprint1/vision.md` (§3.5), `docs/sprint1/backlog.md`, `docs/api/openapi.yaml` (v0.2.2) |
+| Sources | `docs/sprint1/proposal.md` (§1.4), `docs/sprint1/vision.md` (§3.5), `docs/sprint1/backlog.md`, `docs/api/openapi.yaml` (v0.2.3) |
 | Language rule | All UI text and documentation are in English, as are screen codes, API paths, field names and enum values. |
 | Single source of truth | API paths and field names in this document follow `openapi.yaml`. If the contract changes, this document is updated to match. |
 
@@ -48,7 +48,7 @@ Note: Instructors and research assistants see their own appointments inside SCR-
 
 All paths are relative to the base URL `http://localhost:8080/api/v1`.
 
-| Code | Screen | Role | Story | Priority | Main API (per OpenAPI v0.2.2) |
+| Code | Screen | Role | Story | Priority | Main API (per OpenAPI v0.2.3) |
 |---|---|---|---|---|---|
 | SCR-01 | Sign In & Register | All users | US-01, US-02 | Must | `POST /auth/register`, `POST /auth/login`, `GET /users/me` |
 | SCR-02 | Calendar & My Appointments | Student | US-10, US-09 | Calendar: Should · Cancel: Must | `GET /me/calendar`, `GET /appointments/my`, `POST /reservations/{reservationId}/cancel` |
@@ -177,9 +177,9 @@ Alternative flows: SCR-09 ⇢ SCR-02 (secretary cancellation) · SCR-07 / SCR-02
 - **Content:** in-app notifications (`GET /notifications`) for appointment/reservation cancellation, approval/rejection, redirection and authorization granted; unread badge on the bell icon.
 - **Status:** US-04 is an in-app notification story (Must). E-mail notifications are a separate Should story (US-23) that reuses the same events and adds no screen.
 
-## 7. M4 endpoints in OpenAPI v0.2.2
+## 7. M4 endpoints in OpenAPI v0.2.3
 
-Paths and field names below match `docs/api/openapi.yaml` v0.2.2.
+Paths and field names below match `docs/api/openapi.yaml` v0.2.3.
 
 | Method and path | Story | Roles | Request (summary) | Success | Errors |
 |---|---|---|---|---|---|
@@ -254,7 +254,7 @@ US-07 (unit tests) needs no screen. US-23 (e-mail notification) has no screen of
 
 ## 10. Pre-submission checklist
 
-- [x] Paths, field names and role names match `openapi.yaml` v0.2.2 (confirm with Mürsel)
+- [x] Paths, field names and role names match `openapi.yaml` v0.2.3 (confirm with Mürsel)
 - [x] The project name is written "Bookademic" everywhere in this file
 - [x] All screen texts and error messages are in English
 - [ ] Issue + feature branch + PR opened for this file (`Closes #<no>`), reviewed per the review plan
